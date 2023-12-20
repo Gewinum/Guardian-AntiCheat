@@ -11,7 +11,7 @@ final class PingManager
 
     public function __construct()
     {
-        $this->setPingMethod(function(Player $player) {
+        $this->setPingMethod(function(Player $player) : int {
             return $player->getNetworkSession()->getPing();
         });
     }
