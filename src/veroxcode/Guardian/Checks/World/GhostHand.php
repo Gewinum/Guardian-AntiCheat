@@ -14,6 +14,7 @@ use veroxcode\Guardian\Checks\Check;
 use veroxcode\Guardian\Checks\CheckManager;
 use veroxcode\Guardian\Checks\Notifier;
 use veroxcode\Guardian\Checks\Punishments;
+use veroxcode\Guardian\Guardian;
 use veroxcode\Guardian\User\User;
 use veroxcode\Guardian\Utils\Blocks;
 use veroxcode\Guardian\Utils\Raycast;
@@ -36,7 +37,7 @@ class GhostHand extends Check
         $block = $event->getBlock();
         $player = $user->getPlayer();
 
-        $ping = $player->getNetworkSession()->getPing();
+        $ping = Guardian::getInstance()->getPingManager()->getPing($player);
         $rewindTicks = ceil($ping / 50) + 20;
 
         if ($block instanceof Cobweb || $block instanceof Vine || !$block->isFullCube()){

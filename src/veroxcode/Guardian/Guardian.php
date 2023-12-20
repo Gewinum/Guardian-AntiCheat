@@ -11,6 +11,7 @@ use pocketmine\utils\Config;
 use veroxcode\Guardian\Checks\CheckManager;
 use veroxcode\Guardian\Listener\EventListener;
 use veroxcode\Guardian\Panel\AdminPanel;
+use veroxcode\Guardian\Ping\PingManager;
 use veroxcode\Guardian\User\UserManager;
 use veroxcode\Guardian\Utils\Constants;
 
@@ -22,6 +23,7 @@ class Guardian extends PluginBase implements \pocketmine\event\Listener
     public ?Config $config;
     public UserManager $userManager;
     public CheckManager $checkManager;
+    public PingManager $pingManager;
 
     public function onEnable() : void
     {
@@ -46,7 +48,7 @@ class Guardian extends PluginBase implements \pocketmine\event\Listener
 
         $this->userManager = new UserManager();
         $this->checkManager = new CheckManager();
-
+        $this->pingManager = new PingManager();
     }
 
     public function onDisable(): void
@@ -108,6 +110,11 @@ class Guardian extends PluginBase implements \pocketmine\event\Listener
     public function getUserManager(): UserManager
     {
         return $this->userManager;
+    }
+
+    public function getPingManager(): PingManager
+    {
+        return $this->pingManager;
     }
 
     public function getSavedConfig(): Config

@@ -56,7 +56,7 @@ class EventListener implements Listener
             if ($data instanceof UseItemOnEntityTransactionData){
                 $AttackFrame = new AttackFrame(
                     $this->getServerTick(),
-                    $player->getNetworkSession()->getPing(),
+                    Guardian::getInstance()->getPingManager()->getPing($player),
                     $user->getLastAttack()
                 );
                 Guardian::getInstance()->getUserManager()->getUser($uuid)->addToAttackBuffer($AttackFrame);
@@ -94,7 +94,7 @@ class EventListener implements Listener
             if ($packet->hasFlag(PlayerAuthInputFlags::MISSED_SWING)){
                 $AttackFrame = new AttackFrame(
                     $this->getServerTick(),
-                    $player->getNetworkSession()->getPing(),
+                    Guardian::getInstance()->getPingManager()->getPing($player),
                     $user->getLastAttack()
                 );
                 Guardian::getInstance()->getUserManager()->getUser($uuid)->addToAttackBuffer($AttackFrame);

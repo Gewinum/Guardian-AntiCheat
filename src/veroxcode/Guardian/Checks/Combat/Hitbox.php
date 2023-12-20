@@ -42,7 +42,7 @@ class Hitbox extends Check
             $victimUUID = $victim->getUniqueId()->toString();
             $victimUser = Guardian::getInstance()->getUserManager()->getUser($victimUUID);
 
-            $ping = $player->getNetworkSession()->getPing();
+            $ping = Guardian::getInstance()->getPingManager()->getPing($player);
             $rewindTicks = ceil($ping / 50) + 3;
 
             if ($user->getTicksSinceJoin() < 40 || count($user->getMovementBuffer()) <= $rewindTicks){

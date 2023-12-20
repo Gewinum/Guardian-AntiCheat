@@ -1,3 +1,6 @@
+# WARNING, THIS IS FORK!
+## This is not original Guardian. This fork is specially designed for servers with unique getting ping method.
+
 # Guardian AntiCheat
 
 ## An AntiCheat Solution for Minecraft Bedrock

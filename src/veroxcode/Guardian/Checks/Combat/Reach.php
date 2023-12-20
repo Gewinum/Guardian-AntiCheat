@@ -51,10 +51,10 @@ class Reach extends Check
                 return;
             }
 
-            $ping = $player->getNetworkSession()->getPing();
+            $ping = Guardian::getInstance()->getPingManager()->getPing($player);
             $rewindTicks = ceil($ping / 50) + 3;
 
-            $victimPing = $victimUser->getPlayer()->getNetworkSession()->getPing();
+            $victimPing = Guardian::getInstance()->getPingManager()->getPing($victimUser->getPlayer());
             $victimTicks = ceil($victimPing / 50) + 2;
 
             for ($i = 0; $i < $rewindTicks; $i++) {

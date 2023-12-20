@@ -13,6 +13,7 @@ use pocketmine\network\mcpe\protocol\types\inventory\UseItemTransactionData;
 use veroxcode\Guardian\Checks\Check;
 use veroxcode\Guardian\Checks\CheckManager;
 use veroxcode\Guardian\Checks\Notifier;
+use veroxcode\Guardian\Guardian;
 use veroxcode\Guardian\User\User;
 
 class FastEat extends Check
@@ -39,7 +40,7 @@ class FastEat extends Check
                     return;
                 }
 
-                $cache["lastUse"] = (microtime(true) * 1000) - $player->getNetworkSession()->getPing();
+                $cache["lastUse"] = (microtime(true) * 1000) - Guardian::getInstance()->getPingManager()->getPing($player);
                 $user->setCache($cache);
             }
         }
@@ -55,7 +56,7 @@ class FastEat extends Check
             $consumeTime = (microtime(true) * 1000) - $user->getCache()["lastUse"];
             if ($consumeTime < 1600){
 
-                $cache["lastUse"] = (microtime(true) * 1000) - $player->getNetworkSession()->getPing();
+                $cache["lastUse"] = (microtime(true) * 1000) - Guardian::getInstance()->getPingManager()->getPing($player);
                 $user->setCache($cache);
 
                 $user->increaseViolation($this->getName());
